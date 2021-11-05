@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import TODOLIST
+from .models import TODOLIST, ToMeet
 
 
 def homepage(request):
@@ -12,5 +12,9 @@ def test(request):
 
 def second(request):
     return HttpResponse("test 2 page")
+
+def test(request):
+    to_meet = ToMeet.objects.all()
+    return render(request, "meeting.html", {"to_meet": to_meet} )
 
 # Create your views here.
