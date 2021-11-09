@@ -1,5 +1,5 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.http.response import HttpResponse, redirect
+from django.shortcuts import redirect, render
 from .models import TODOLIST, ToMeet
 
 
@@ -16,5 +16,12 @@ def second(request):
 def meeting(request):
     to_meet = ToMeet.objects.all()
     return render(request, "meeting.html", {"to_meet": to_meet} )
+
+def add_todo(request):
+    form = request.POST
+    text = form["todo_text"]
+    todo = ToDo(text=text)
+    todo.save()
+    return redirect(test)
 
 # Create your views here.
