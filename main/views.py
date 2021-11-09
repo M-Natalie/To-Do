@@ -13,7 +13,7 @@ def test(request):
 def second(request):
     return HttpResponse("test 2 page")
 
-def test(request):
+def meeting(request):
     to_meet = ToMeet.objects.all()
     return render(request, "meeting.html", {"to_meet": to_meet} )
 

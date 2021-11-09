@@ -7,7 +7,7 @@ class TODOLIST(models.Model):
     is_favorite = models.BooleanField(default=False)
 
 class ToMeet(models.Model):
-    person = models.CharField(max_length=50)
+    person = models.CharField(max_length=100)
     phone_number = models.IntegerField()
     data_of_meeting = models.DateField()
     is_closed = models.BooleanField(default=False)

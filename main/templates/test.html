@@ -20,7 +20,6 @@
 
 </head>
 <body>
-    <h2> Это тестовая страница</h2>
     <style>
         body{
             background-color: lightskyblue;
@@ -53,8 +52,8 @@
          <div class="todo_item_footer">
              <p>{{ todo.created_at }}</p>
              <div class="action_buttons">
-                 <img src="./icons/star (1).png" />
-                 <img src="./icons/recycle-bin.png" />
+                 <img src="{% static './icons/star (1).png' %}" />
+                 <img src="{% static './icons/recycle-bin.png' %}" />
              </div>
          </div>    
     </div>

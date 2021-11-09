@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do</title>
-    <!-- <link rel="stylesheet" href="./checkbox.css" /> -->
-    <link rel="stylesheet" href="{% static 'styles/checkbox.css' %}">
-
-    <!--<link rel="stylesheet" href="./index.css" /> -->
-    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
-
+    <title>To Meet </title>
+    <link rel="stylesheet" href="{% static 'styles/index28.css' %}" />
 </head>
 <body>
    
@@ -25,24 +21,25 @@
     </div>
 
     <div class="todo_container"><</div>
-    
-   {% for tomeet in to_meet %}
+     {% for ToMeet in to_meet %}
     <div class="tomeet_item">
-         <div class="tomeet_item_header">
-             <label class="checkbox_container">
+         
+        <div class="tomeet_item_header"> 
+            <label class="checkbox_container">
                  <input type="checkbox" />
                  <span class="checkmark"></span>
-             </label>
-             <h4> {{ ToMeet.person}}</h4>
-         </div>
-         <div class="todo_item_footer">
-             <p>{{ ToMeet.data_of_meeting }}</p>
-             <p>{{ ToMeet.phone_number}}</p>
-             <div class="action_buttons">
+            </label>
+            <h4> {{ ToMeet.person }}</h4>
+        </div>
+
+        <div class="todo_item_footer">
+            <p>{{ ToMeet.data_of_meeting }} - {{ ToMeet.phone_number}}</p>
+             
+            <div class="action_buttons">
                  <img src="./icons/star (1).png" />
                  <img src="./icons/recycle-bin.png" />
-             </div>
-         </div>    
+            </div>
+        </div>    
     </div>
 {% endfor%}
 </div>
