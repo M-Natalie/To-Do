@@ -10,40 +10,45 @@
     <title>To Meet </title>
     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
 </head>
+
 <body>
-   
-</body> 
+
+</body>
 
 <section>
-<div class="create_container">
-    <input class="create_input" type="text" placeholder="Напиши сюда новую задачу" />
-    <button class="create_button"> Добавить </button>
+    <div class="create_container">
+        <form action="ToMeet" method="POST">
+            {% csrf_token %}
+            <input class="create_input" type="text" placeholder="Напиши сюда новую задачу" name="ToMeet_text" />
+            <button class="create_button"> Добавить </button>
     </div>
+    </form>
 
-    <div class="todo_container"><</div>
-     {% for ToMeet in to_meet %}
-    <div class="tomeet_item">
-         
-        <div class="tomeet_item_header"> 
-            <label class="checkbox_container">
-                 <input type="checkbox" />
-                 <span class="checkmark"></span>
-            </label>
-            <h4> {{ ToMeet.person }}</h4>
-        </div>
+    <div class="todo_container">
+        
+            {% for ToMeet in to_meet %}
+            <div class="tomeet_item">
 
-        <div class="todo_item_footer">
-            <p>{{ ToMeet.data_of_meeting }} - {{ ToMeet.phone_number}}</p>
-             
-            <div class="action_buttons">
-                 <img src="./icons/star (1).png" />
-                 <img src="./icons/recycle-bin.png" />
+                <div class="tomeet_item_header">
+                    <label class="checkbox_container">
+                        <input type="checkbox" />
+                        <span class="checkmark"></span>
+                    </label>
+                    <h4> {{ ToMeet.person }}</h4>
+                </div>
+
+                <div class="todo_item_footer">
+                    <p>{{ ToMeet.data_of_meeting }} - {{ ToMeet.phone_number}}</p>
+
+                    <div class="action_buttons">
+                        <img src="{% static './icons/star (1).png' %}" />
+                        <img src="{% static './icons/recycle-bin.png' %}" />
+                    </div>
+                </div>
             </div>
-        </div>    
+            {% endfor%}
     </div>
-{% endfor%}
-</div>
- 
+
 </section>
 
 </html>

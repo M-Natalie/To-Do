@@ -1,4 +1,4 @@
-from django.http.response import HttpResponse, redirect
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from .models import TODOLIST, ToMeet
 
@@ -20,8 +20,15 @@ def meeting(request):
 def add_todo(request):
     form = request.POST
     text = form["todo_text"]
-    todo = ToDo(text=text)
+    todo = TODOLIST(text=text)
     todo.save()
     return redirect(test)
+
+def to_meet(request):
+    form = request.POST
+    text = form["ToMeet_text"]
+    meeting = ToMeet(text=text)
+    meeting.save()
+    return redirect(meeting)
 
 # Create your views here.
