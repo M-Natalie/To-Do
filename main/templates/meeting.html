@@ -17,9 +17,9 @@
 
 <section>
     <div class="create_container">
-        <form action="ToMeet" method="POST">
+        <form action="{% url 'add-tomeet' %}" method="POST">
             {% csrf_token %}
-            <input class="create_input" type="text" placeholder="Напиши сюда новую задачу" name="ToMeet_text" />
+            <input class="create_input" type="text" placeholder="Напиши сюда новую задачу" name="tomeet_text" />
             <button class="create_button"> Добавить </button>
     </div>
     </form>

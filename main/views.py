@@ -24,11 +24,16 @@ def add_todo(request):
     todo.save()
     return redirect(test)
 
-def to_meet(request):
+def add_tomeet(request):
     form = request.POST
-    text = form["ToMeet_text"]
-    meeting = ToMeet(text=text)
-    meeting.save()
+    text = form["tomeet_text"]
+    tomeet = ToMeet(text=text)
+    tomeet.save()
     return redirect(meeting)
+
+def delete_todo(request, id):
+    todo = TODOLIST.objects.get(id=id)
+    todo.delete()
+    return redirect(test)
 
 # Create your views here.
