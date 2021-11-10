@@ -48,4 +48,10 @@ def unmark_todo(request, id):
     todo.save()
     return redirect(test)
 
+def close_todo(request, id):
+    todo = TODOLIST.objects.get(id=id)
+    todo.is_closed = not todo.is_closed
+    todo.save()
+    return redirect(test)
+
 # Create your views here.
