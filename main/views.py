@@ -54,10 +54,11 @@ def close_todo(request, id):
 
 
 def add_tomeet(request):
-    form = request.POST
+    form = request.POST.get
     person  = form["tomeet_text"]
     phone_number = form["tomeet_number"]
-    tomeet = ToMeet(person=phone_number)
+    date_of_meeting = form["tomeet_date"]
+    tomeet = ToMeet(person=person, phone_number=phone_number, date_of_meeting=date_of_meeting)
     tomeet.save()
     return redirect(meeting)
 

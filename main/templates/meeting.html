@@ -15,15 +15,20 @@
         }
     </style>
   <section>
-    {% for ToMeet in tomeet %}
+    
       <div class="create_container">
         <form action="{% url 'add-tomeet' %}" method="POST">
             {% csrf_token %}
             <input class="create_input" type="text" placeholder="Напиши сюда имя человека" name="tomeet_text" />
+            <input class="create_input" type="tel" placeholder="Напиши сюда контактный номер" name="tomeet_number" />
+            <input class="create_input" type="date" placeholder="Укажите дату встречи" name="tomeet_date" />
+            <br>
             <button class="create_button"> Добавить </button>
           </form>
       </div>
       <div class="todo_container">
+
+        {% for ToMeet in tomeet %}
         <div class="tomeet_item
         {% if tomeet.is_favorite %}
             marked
