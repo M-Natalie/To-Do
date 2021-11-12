@@ -57,7 +57,7 @@ def add_tomeet(request):
     form = request.POST
     person  = form["tomeet_text"]
     phone_number = form["tomeet_number"]
-    tomeet = ToMeet(person=person, phone_number=phone_number)
+    tomeet = ToMeet(person=phone_number)
     tomeet.save()
     return redirect(meeting)
 

@@ -1,81 +1,60 @@
-
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Meet</title>
     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
-
 </head>
-
 <body>
     <style>
         body {
             background-color: rgb(219, 243, 212);
         }
     </style>
-
-</body>
-
-
-<section>
-    <div class="create_container">
+  <section>
+    {% for ToMeet in tomeet %}
+      <div class="create_container">
         <form action="{% url 'add-tomeet' %}" method="POST">
             {% csrf_token %}
-            <input class="create_input" type="text" placeholder="Напиши сюда имя человека  и номер телефона" name="tomeet_text" /> 
+            <input class="create_input" type="text" placeholder="Напиши сюда имя человека" name="tomeet_text" />
             <button class="create_button"> Добавить </button>
-    </div>
-    </form>
-
-    <div class="todo_container">
-        
-
-            {% for ToMeet in tomeet %}
-            <div class="tomeet_item
-               {% if tomeet.is_favorite %}
-                    marked
-                {% elif tomeet.is_closed %}
-                    done
-               {% endif %}
-            
-            ">
-                <div class="tomeet_item_header">
-                    <label class="checkbox_container">
-                        <input type="checkbox" 
-                        {% if tomeet.is_closed %}
-                            checked
-
-                        {% endif %}
-                        />
-                        <span class="checkmark"></span>
-                    </label>
-                    <h4> <a href="{% url 'close-tomeet' tomeet.id %}">{{ tomeet.person}}</a></h4>
-
+          </form>
+      </div>
+      <div class="todo_container">
+        <div class="tomeet_item
+        {% if tomeet.is_favorite %}
+            marked
+        {% elif tomeet.is_closed %}
+            done
+        {% endif %}    
+        ">
+        <div class="tomeet_item_header">
+            <label class="checkbox_container">
+              <input type="checkbox" 
+                {% if tomeet.is_closed %}
+                  checked
+                {% endif %}>
+              <span class="checkmark"></span>
+              </label>
+            <h4> <a href="{% url 'close-tomeet' tomeet.id %}">{{ tomeet.person}}</a></h4>
+            <div class="todo_item_footer">
+              <p>{{ tomeet.phone_number }}</p>
+              <div class="action_buttons">
+                {% if tomeet.is_favorite%}
+                  <a href="{% url 'unmark-tomeet' tomeet.id %}"><img src="{% static './icons/favourite.png' %}" /></a>
+                {% else %}
+                  <a href="{% url 'mark-tomeet' tomeet.id %}"><img src="{% static './icons/star (1).png' %}" /></a>
+                {% endif %}
+                <a href="{% url 'delete-tomeet' tomeet.id %}"><img src="{% static './icons/recycle-bin.png' %}" /></a> 
                 </div>
-                <div class="todo_item_footer">
-                    <p>{{ tomeet.phone_number }}</p>
-                    <div class="action_buttons">
-                        {% if tomeet.is_favorite%}
-                        <a href="{% url 'unmark-tomeet' tomeet.id %}"><img src="{% static './icons/favourite.png' %}" /></a>
+              </div>
+          </div>
+        </div>
+      {% endfor%}
+  </section>
+</body>
+</html>
 
-                        {% else %}
-                        <a href="{% url 'mark-tomeet' tomeet.id %}"><img src="{% static './icons/star (1).png' %}" /></a>
-
-                        {% endif %}
-                        
-                        <a href="{% url 'delete-tomeet' tomeet.id %}"><img src="{% static './icons/recycle-bin.png' %}" /></a> 
-                        
-                    </div>
-                </div>
-            </div>
-            {% endfor%}
-    </div>
-
-</section>
-
-</html> 
