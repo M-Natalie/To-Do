@@ -19,6 +19,7 @@
           {% csrf_token %}
                 <input class="create_input" type="text" placeholder="Напиши сюда имя человека" name="tomeet_person" />
                  <input class="create_input" type="tel" placeholder="Напиши сюда номер телефона" name="tomeet_phone_number" />
+                 <input class="create_input" type="date" placeholder="Выбери дату встречи" name="tomeet_date_of_meeting" />
                 <button class="create_button"> Добавить </button>
         </div>
       </form>
@@ -26,7 +27,7 @@
         <div class="todo_container">
             
     
-                {% for tomeet in to_meet %}
+            {% for tomeet in to_meet %}
                 <div class="todo_item
                    {% if tomeet.is_favorite %}
                         marked
