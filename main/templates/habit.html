@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+
+</head>
+<body>
+    
+  <section class="wrapper">
+    
+    <div class="create_container">
+      <form action="{% url 'add-habit' %}" method="POST">
+          {% csrf_token %}
+                <input class="create_input" type="text" placeholder="Напиши сюда имя человека" name="habit_name" />
+                 <input class="create_input" type="text" placeholder="Введи коментарии" name="habit_comment" />
+                <button class="create_button"> Добавить </button>
+        </div>
+      </form>
+    
+        <div class="todo_container">
+            
+    
+            {% for habit in habit_list %}
+                <div class="todo_item
+                   {% if habit.important %}
+                        marked
+                    {% elif habit.done_for_today %}
+                        done
+                   {% endif %}
+                
+                ">
+    
+                    <div class="todo_item_header">
+                        <label class="checkbox_container">
+                            <input type="checkbox" 
+                            {% if habit.done_for_today %}
+                                checked
+    
+                            {% endif %}
+                            />
+                            <span class="checkmark"></span>
+                        </label>
+                        <h4> <a href="{% url 'closed-habit' habit.id %}">{{ habit.name}}</a></h4>
+                        
+                    </div>
+                        <h5> {{ habit.comment}}</h5>
+                    <div class="todo_item_footer">
+                        <div class="action_buttons">
+                            {% if habit.important%}
+                            <a href="{% url 'marked-habit' habit.id %}"><img src="{% static './icons/star (1).png' %}" /></a>  
+                            
+                            {% else %}
+                            <a href="{% url 'unmark-habit' habit.id %}"><img src="{% static './icons/favourite.png' %}" /></a>                      
+    
+                            {% endif %}
+                            
+                            <a href="{% url 'delete-habit' habit.id %}"><img src="{% static './icons/recycle-bin.png' %}" /></a> 
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+        </div>
+    
+    </section>
+    
+    </html>

@@ -2,11 +2,15 @@ from typing import Text
 from django.db.models.fields import TextField
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-from .models import TODOLIST, ToMeet
+from .models import TODOLIST, Habits, ToMeet, Habits
 
 
 def homepage(request):
     return render(request, "index28.html")
+
+def habit(request):
+    habit_list = Habits.objects.all()
+    return render(request, "habit.html", {"habit_list": habit_list} )
 
 def test(request):
     todo_list = TODOLIST.objects.all()
@@ -85,4 +89,41 @@ def closed_tomeet(request, id):
     tomeet.save()
     return redirect(meeting) 
 
+
+    
+
+
+
+def add_habit(request):
+    form = request.POST
+    name = form["habit_name"]
+    comment = form["habit_comment"]
+    habit = Habits(name=name, comment=comment)
+    habit.save()
+    return redirect(habit)
+
+
+
+def delete_habit(request, id):
+    habit = Habits.objects.get(id=id)
+    habit.delete()
+    return redirect(habit)
+
+def marked_habit(request, id):
+    habit = Habits.objects.get(id=id)
+    habit.important = True
+    habit.save()
+    return redirect(habit)
+
+def unmark_habit(request, id):
+    habit = Habits.objects.get(id=id)
+    habit.important = False
+    habit.save()
+    return redirect(habit)
+
+def closed_habit(request, id):
+    habit = Habits.objects.get(id=id)
+    habit.done_for_today = not habit.done_for_today
+    habit.save()
+    return redirect(habit)
 # Create your views here.
