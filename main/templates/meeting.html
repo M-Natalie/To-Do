@@ -48,9 +48,11 @@
                             <span class="checkmark"></span>
                         </label>
                         <h4> <a href="{% url 'closed-tomeet' tomeet.id %}">{{ tomeet.person}}</a></h4>
-                        <h4> {{ tomeet.phone_number}}</h4>
+                        
+                        
     
                     </div>
+                        <h3> {{ tomeet.phone_number}}</h3>
                     <div class="todo_item_footer">
                         <p>{{ tomeet.date_of_meeting }}</p>
                         <div class="action_buttons">
