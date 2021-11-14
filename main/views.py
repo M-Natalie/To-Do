@@ -61,9 +61,9 @@ def add_tomeet(request):
     tomeet.save()
     return redirect(meeting)
 
-def clean_tomeet(request, id):
+def delete_tomeet(request, id):
     tomeet = ToMeet.objects.get(id=id)
-    tomeet.clean()
+    tomeet.delete()
     return redirect(meeting)
 
 def marked_tomeet(request, id):
