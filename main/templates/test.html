@@ -18,23 +18,14 @@
 
     <!--<link rel="stylesheet" href="./index.css" /> -->
     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
 
 </head>
 
-<body>
-    <style>
-        body {
-            background-color: lightskyblue;
-        }
-    </style>
 
 </body>
 
-<!--{% for todo in todo_list %}
-<h3>{{ todo.text }} - {{ todo.created_at }}</h3>
-{% endfor %} -->
-
-<section>
+<section class="wrapper">
     <div class="create_container">
         <form action="{% url 'add-todo' %}" method="POST">
             {% csrf_token %}
@@ -55,8 +46,6 @@
                {% endif %}
             
             ">
-
-
 
                 <div class="todo_item_header">
                     <label class="checkbox_container">

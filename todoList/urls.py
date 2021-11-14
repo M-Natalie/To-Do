@@ -33,10 +33,10 @@ urlpatterns = [
     path("mark-todo/<id>/", mark_todo, name="mark-todo"),
     path("unmark-todo/<id>/", unmark_todo, name="unmark-todo"),
     path("close-todo/<id>/", close_todo, name="close-todo"),
-    path("delete-tomeet/<id>/", delete_tomeet, name="delete-tomeet"),
-    path("mark-tomeet/<id>/", mark_tomeet, name="mark-tomeet"),
+    path("clean-tomeet/<id>/", clean_tomeet, name="clean-tomeet"),
+    path("marked-tomeet/<id>/", marked_tomeet, name="marked-tomeet"),
     path("unmark-tomeet/<id>/", unmark_tomeet, name="unmark-tomeet"),
-    path("close-tomeet/<id>/", close_tomeet, name="close-tomeet"),
+    path("closed-tomeet/<id>/", closed_tomeet, name="closed-tomeet"),
 
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

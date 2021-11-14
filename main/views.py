@@ -54,20 +54,19 @@ def close_todo(request, id):
 
 
 def add_tomeet(request):
-    form = request.POST.get
-    person  = form["tomeet_text"]
-    phone_number = form["tomeet_number"]
-    date_of_meeting = form["tomeet_date"]
-    tomeet = ToMeet(person=person, phone_number=phone_number, date_of_meeting=date_of_meeting)
+    form = request.POST
+    person  = form["tomeet_person"]
+    phone_number = form["tomeet_phone_number"]
+    tomeet = ToMeet(person=person, phone_number=phone_number)
     tomeet.save()
     return redirect(meeting)
 
-def delete_tomeet(request, id):
+def clean_tomeet(request, id):
     tomeet = ToMeet.objects.get(id=id)
-    tomeet.delete()
+    tomeet.clean()
     return redirect(meeting)
 
-def mark_tomeet(request, id):
+def marked_tomeet(request, id):
     tomeet = ToMeet.objects.get(id=id)
     tomeet.is_favorite = True
     tomeet.save()
@@ -79,7 +78,7 @@ def unmark_tomeet(request, id):
     tomeet.save()
     return redirect(meeting)
 
-def close_tomeet(request, id):
+def closed_tomeet(request, id):
     tomeet = ToMeet.objects.get(id=id)
     tomeet.is_closed = not tomeet.is_closed
     tomeet.save()
