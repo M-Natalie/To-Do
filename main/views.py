@@ -100,30 +100,30 @@ def add_habit(request):
     comment = form["habit_comment"]
     habit = Habits(name=name, comment=comment)
     habit.save()
-    return redirect(habit)
+    return redirect("habit")
 
 
 
 def delete_habit(request, id):
     habit = Habits.objects.get(id=id)
     habit.delete()
-    return redirect(habit)
+    return redirect("habit")
 
 def marked_habit(request, id):
     habit = Habits.objects.get(id=id)
     habit.important = True
     habit.save()
-    return redirect(habit)
+    return redirect("habit")
 
 def unmark_habit(request, id):
     habit = Habits.objects.get(id=id)
     habit.important = False
     habit.save()
-    return redirect(habit)
+    return redirect("habit")
 
 def closed_habit(request, id):
     habit = Habits.objects.get(id=id)
     habit.done_for_today = not habit.done_for_today
     habit.save()
-    return redirect(habit)
+    return redirect("habit")
 # Create your views here.
